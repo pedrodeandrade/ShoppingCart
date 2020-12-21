@@ -28,11 +28,13 @@
                 "/^~/pages/",
                 "/^~/controllers/",
                 "/^~/components/",
+                "/^~/utils/",
                 ["parent", "sibling", "index"]
             ],
             "alphabetize": { "order": "asc", "ignoreCase": true }
         }
-     ]
+     ],
+     "curly": "off"
     },
     "settings": {
       "import/resolver": {
