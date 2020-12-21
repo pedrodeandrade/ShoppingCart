@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.header`
   grid-area: header;
-  background-color: green;
+  background-color: #d8d8d8;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -20,7 +20,7 @@ export const ProfileContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
   width:20%;
-  margin-right: 20px;
+  margin-right: 30px;
 `
 
 export const ProfilePicture = styled.img`
@@ -31,5 +31,6 @@ export const ProfilePicture = styled.img`
 
 export const ProfileName = styled.p`
   font-size: 18px;
-  font-weight:bold
+  font-weight:bold;
+  color: #323232;
 `
