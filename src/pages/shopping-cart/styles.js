@@ -15,4 +15,8 @@ export const Container = styled.div`
 export const ProductsContainer = styled.div`
   grid-area: products;
   background-color: blue;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `
