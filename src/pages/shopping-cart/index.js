@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { getProducts } from '~/controllers/products'
 
 import Header from '~/components/Header'
+import ProductCard from '~/components/ProductCard'
 
 import { showErrorAlert } from '~/utils/functions/alerts'
 
@@ -32,7 +33,11 @@ function ShoppingCart () {
   return (
     <Container>
       <Header/>
-      <ProductsContainer/>
+      <ProductsContainer>
+        {
+          products ? products.map(product => <ProductCard product={product} key={product.id.toString()}/>) : null
+        }
+      </ProductsContainer>
     </Container>
   )
 }
