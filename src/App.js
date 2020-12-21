@@ -1,13 +1,17 @@
 import React from 'react'
 import { ToastContainer } from 'react-toastify'
 
+import { ShoppingCartProvider } from '~/contexts/ShoppingCartContext'
+
 import ShoppingCart from '~/pages/shopping-cart'
 
 import GlobalStyle from './styles/global'
 
 function App () {
   return <>
-      <ShoppingCart/>
+      <ShoppingCartProvider>
+        <ShoppingCart/>
+      </ShoppingCartProvider>
       <GlobalStyle/>
       <ToastContainer/>
     </>
