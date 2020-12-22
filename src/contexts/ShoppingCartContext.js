@@ -29,7 +29,7 @@ export const ShoppingCartProvider = ({ children }) => {
   }
 
   const removeProductFromCart = (id) => {
-    const newShoppingCart = shoppingCart.filter(product => product.id === id)
+    const newShoppingCart = shoppingCart.filter(product => product.id !== id)
 
     setShoppingCart(newShoppingCart)
 
@@ -39,14 +39,16 @@ export const ShoppingCartProvider = ({ children }) => {
   const increaseProductQuantity = (id) => {
     const cartProduct = shoppingCart.findIndex(product => product.id === id)
 
-    if (shoppingCart[cartProduct].available === 0)
+    const { available, quantity } = shoppingCart[cartProduct]
+
+    if (available === quantity)
       return
 
     const newShoppingCart = shoppingCart
 
     newShoppingCart[cartProduct].quantity++
 
-    setShoppingCart(newShoppingCart)
+    setShoppingCart([...newShoppingCart])
 
     localStorage.setItem('shopping-cart', JSON.stringify(newShoppingCart))
   }
@@ -54,7 +56,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const decreaseProductQuantity = (id) => {
     const cartProduct = shoppingCart.findIndex(product => product.id === id)
 
-    if (shoppingCart[cartProduct].quantity === 0) {
+    if (shoppingCart[cartProduct].quantity === 1) {
       removeProductFromCart(shoppingCart[cartProduct].id)
 
       return
@@ -64,7 +66,7 @@ export const ShoppingCartProvider = ({ children }) => {
 
     newShoppingCart[cartProduct].quantity--
 
-    setShoppingCart(newShoppingCart)
+    setShoppingCart([...newShoppingCart])
 
     localStorage.setItem('shopping-cart', JSON.stringify(newShoppingCart))
   }
