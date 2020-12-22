@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: grid;
   width: 100%;
   height: 100%;
-  background-color: red;
+  background-color: white;
   grid-template-columns: 2fr 2fr;
   grid-template-rows: 10% auto;
   grid-template-areas:
@@ -19,6 +19,7 @@ export const ProductsContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 3%;
 
   ul {
     display: grid;
@@ -32,7 +33,7 @@ export const ShoppingCartContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: space-around;
 `
 export const ShoppingCartTab = styled.div`
   display:grid;
@@ -60,6 +61,7 @@ export const ShoppingCartProductsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto;
 `
 
 export const ShoppingCartDataContainer = styled.div`
@@ -69,7 +71,6 @@ export const ShoppingCartDataContainer = styled.div`
   align-items: center;
   padding: 0 3%;
   border-top: 1px solid #BBBBBB;
-  margin-top: 3%;
 `
 export const ShoppingCartDataLabel = styled.p`
   font-size: 20px;
@@ -78,4 +79,26 @@ export const ShoppingCartDataLabel = styled.p`
 export const ShoppingCartDataValue = styled.p`
   font-size: 15px;
   color: #333333;
+`
+
+export const CheckoutButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 10%;
+  width: 100%;
+`
+
+export const CheckoutButton = styled.button`
+  border:none;
+  background-color: #393939;
+  height: 100%;
+  width: 40%;
+  border-radius: 10px;
+  margin-right: 15%;
+`
+
+export const CheckoutButtonTitleStyle = styled.span`
+  font-weight: bold;
+  color: white;
 `
