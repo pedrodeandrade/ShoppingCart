@@ -8,6 +8,8 @@ export const Container = styled.div`
   height: 25%;
   background-color: #D8D8D8;
   border: 1px solid #BBBBBB;
+  margin-bottom: 2%;
+  margin-top: 2%;
 `
 
 export const Photo = styled.div`
@@ -18,11 +20,12 @@ export const Data = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px;
+  padding: 5px 10px 10px 10px;
 `
 export const ProductName = styled.p`
   font-weight:bold;
   color: #383838;
+  margin-bottom: 2%;
 `
 
 export const ProductValuesContainer = styled.div`
@@ -31,7 +34,7 @@ export const ProductValuesContainer = styled.div`
   justify-content: space-between;
 
   p {
-    color: #C6C6C6;
+    color: #8C8C8C;
   }
 `
 
