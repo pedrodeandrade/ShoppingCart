@@ -1,12 +1,34 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useContext, useState, useEffect } from 'react'
+
+import ShoppingCartContext from '~/contexts/ShoppingCartContext'
 
 import { formatNumberToUSD } from '~/utils/functions/currency'
 
 import { Container, Photo, Infos, Button, ButtonLabel, ProductName, ProductInfo } from './styles'
 
-function ProductCard ({ product, onClick }) {
+function ProductCard ({ product }) {
+  const { addProductToCart, shoppingCart } = useContext(ShoppingCartContext)
+
+  const [productsLeft, setProductsLeft] = useState(product.available - productQuantityOnShoppingCart())
+
+  useEffect(() => setProductsLeft(product.available - productQuantityOnShoppingCart()), [shoppingCart])
+
+  function handleBuy (event) {
+    event.preventDefault()
+
+    addProductToCart(product)
+
+    setProductsLeft(productsLeft - 1)
+  }
+
+  function productQuantityOnShoppingCart () {
+    const shoppingCartProduct = shoppingCart.find(({ id }) => id === product.id)
+
+    return shoppingCartProduct ? shoppingCartProduct.quantity : 0
+  }
+
   return (
     <Container>
       <Photo/>
@@ -15,10 +37,10 @@ function ProductCard ({ product, onClick }) {
           {product.name}
         </ProductName>
         <ProductInfo>
-          {`${formatNumberToUSD(product.price)} - ${product.available} left`}
+          {`${formatNumberToUSD(product.price)} - ${productsLeft} left`}
         </ProductInfo>
       </Infos>
-      <Button>
+      <Button onClick={handleBuy} disabled={productsLeft !== product.available}>
         <ButtonLabel>
           BUY
         </ButtonLabel>
