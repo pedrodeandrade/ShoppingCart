@@ -17,8 +17,8 @@ export const Container = styled.div`
 export const Photo = styled.div`
   background: #999999;
   grid-area: photo;
-  border-top-left-radius: 5%;
-  border-top-right-radius: 5%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 `
 
 export const Infos = styled.div`
@@ -44,7 +44,7 @@ color: #8c8c8c;
 export const Button = styled.button`
   background: #393939;
   grid-area: button;
-  border-radius: 0 0 5% 5%;
+  border-radius: 0 0 10px 10px;
   border:0;
   font-weight: bold;
 `
