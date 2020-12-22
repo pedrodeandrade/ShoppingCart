@@ -22,11 +22,18 @@ import {
   ShoppingCartProductsContainer,
   ShoppingCartDataContainer,
   ShoppingCartDataLabel,
-  ShoppingCartDataValue
+  ShoppingCartDataValue,
+  CheckoutButtonContainer,
+  CheckoutButton,
+  CheckoutButtonTitleStyle
 } from './styles'
 
 function ShoppingCart () {
   const [products, setProducts] = useState([])
+  const [subtotal, setSubtotal] = useState(0)
+  const [shipping, setShipping] = useState(0)
+  const [discount, setDiscount] = useState(0)
+  const [total, setTotal] = useState(0)
 
   const { initializeShoppingCart, shoppingCart } = useContext(ShoppingCartContext)
 
@@ -39,6 +46,18 @@ function ShoppingCart () {
       setProducts(response)
   }, [])
 
+  useEffect(() => {
+    calculateSubtotal()
+  }, [shoppingCart])
+
+  useEffect(() => {
+    calculateTotal()
+  }, [subtotal, shipping, discount])
+
+  useEffect(() => {
+    calculateShipping()
+  }, [subtotal])
+
   async function getShopProducts () {
     try {
       const response = await getProducts()
@@ -47,6 +66,46 @@ function ShoppingCart () {
     } catch (error) {
       showErrorAlert('A error happened when trying to load the products, please refresh the page!')
     }
+  }
+
+  function calculateSubtotal () {
+    let shoppingCartSubtotal = 0
+
+    shoppingCart.forEach(({ price, quantity }) => { shoppingCartSubtotal += (price * quantity) })
+
+    setSubtotal(shoppingCartSubtotal)
+  }
+
+  function calculateTotal () {
+    setTotal((subtotal + shipping) - discount)
+  }
+
+  function calculateShipping () {
+    if (subtotal > 400) {
+      setShipping(0)
+
+      return
+    }
+
+    const productsWeight = calculateProductsWeight()
+
+    const SHIPPING_PRICE_BELLOW_10KG = 30
+
+    const TAX_OVER_SHIPPING = 7
+
+    if (productsWeight <= 10 && shoppingCart.length > 0)
+      setShipping(SHIPPING_PRICE_BELLOW_10KG)
+    else if (productsWeight > 10) {
+      setShipping(SHIPPING_PRICE_BELLOW_10KG + TAX_OVER_SHIPPING * (Math.floor((productsWeight - 10) / 5)))
+    }
+  }
+
+  function calculateProductsWeight () {
+    let productsWeight = 0
+
+    shoppingCart.forEach(({ quantity }) => { productsWeight += quantity })
+
+    return productsWeight
   }
 
   const renderShoppingCartItem = (label, value) => (
@@ -84,18 +143,25 @@ function ShoppingCart () {
             }
           </ShoppingCartProductsContainer>
           {
-            renderShoppingCartItem('Subtotal', 20)
+            renderShoppingCartItem('Subtotal', subtotal)
           }
           {
-            renderShoppingCartItem('Shipping', 10)
+            renderShoppingCartItem('Shipping', shipping)
           }
           {
-            renderShoppingCartItem('Discount', 30)
+            renderShoppingCartItem('Discount', discount)
           }
           {
-            renderShoppingCartItem('Total', 10)
+            renderShoppingCartItem('Total', total)
           }
         </ShoppingCartTab>
+        <CheckoutButtonContainer>
+          <CheckoutButton>
+            <CheckoutButtonTitleStyle>
+              CHECKOUT
+            </CheckoutButtonTitleStyle>
+          </CheckoutButton>
+        </CheckoutButtonContainer>
       </ShoppingCartContainer>
     </Container>
   )
