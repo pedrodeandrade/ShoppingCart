@@ -37,7 +37,7 @@ export const ShoppingCartContainer = styled.div`
 `
 export const ShoppingCartTab = styled.div`
   display:grid;
-  grid-template-rows: 10% 50% 10% 10% 10% 10%;
+  grid-template-rows: 10% 40% 10% 10% 10% 10% 10%;
   background-color: #D8D8D8; 
   border-radius: 2%;
   height: 80%;
@@ -101,4 +101,28 @@ export const CheckoutButton = styled.button`
 export const CheckoutButtonTitleStyle = styled.span`
   font-weight: bold;
   color: white;
+`
+export const DiscountCodeContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3%;
+  border-top: 1px solid #BBBBBB;
+`
+
+export const DiscountCodeInput = styled.input`
+  padding: 2% 0 2% 2%;
+`
+export const DiscountCodeButton = styled.button`
+  border:none;
+  background-color: #393939;
+  height: 70%;
+  width: 20%;
+  border-radius: 5px;
+  padding-bottom:2px;
+`
+
+export const DiscountButtonTitleStyle = styled(CheckoutButtonTitleStyle)`
+  font-size: 10px;
 `
