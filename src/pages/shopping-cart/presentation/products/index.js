@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import ProductCard from '~/components/ProductCard'
@@ -18,3 +18,7 @@ function ProductsView ({ products }) {
 }
 
 export default ProductsView
+
+ProductsView.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object).isRequired
+}
