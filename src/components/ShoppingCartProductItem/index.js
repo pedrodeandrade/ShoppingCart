@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types'
 import React, { useContext } from 'react'
 
 import ShoppingCartContext from '~/contexts/ShoppingCartContext'
@@ -52,3 +51,7 @@ function ShoppingCartProductItem ({ productId }) {
 }
 
 export default ShoppingCartProductItem
+
+ShoppingCartProductItem.propTypes = {
+  productId: PropTypes.number.isRequired
+}
