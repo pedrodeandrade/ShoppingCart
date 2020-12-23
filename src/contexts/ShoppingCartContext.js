@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types'
 import React, { createContext, useState } from 'react'
 
 const ShoppingCartContext = createContext()
@@ -88,3 +88,7 @@ export const ShoppingCartProvider = ({ children }) => {
 }
 
 export default ShoppingCartContext
+
+ShoppingCartProvider.propTypes = {
+  children: PropTypes.func.isRequired
+}
