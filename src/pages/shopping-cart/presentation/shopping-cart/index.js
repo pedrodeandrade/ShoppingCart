@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import ShoppingCartProductItem from '~/components/ShoppingCartProductItem'
@@ -111,3 +111,16 @@ function ShoppingCartView ({
 }
 
 export default ShoppingCartView
+
+ShoppingCartView.propTypes = {
+  shoppingCart: PropTypes.arrayOf(PropTypes.object).isRequired,
+  discountCode: PropTypes.string.isRequired,
+  discountApplied: PropTypes.bool.isRequired,
+  subtotal: PropTypes.number.isRequired,
+  shipping: PropTypes.number.isRequired,
+  discount: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  applyDiscount: PropTypes.func.isRequired,
+  checkout: PropTypes.func.isRequired,
+  updateDiscountCode: PropTypes.func.isRequired
+}
