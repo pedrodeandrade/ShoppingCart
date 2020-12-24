@@ -25,14 +25,19 @@
             "newlinesBetween": "always",
             "groups": [
                 "module",
+                "/^~/contexts/",
                 "/^~/pages/",
+                "/^pages/containers/",
                 "/^~/controllers/",
                 "/^~/components/",
+                "/^~/utils/",
+                "/^pages/presentation/",
                 ["parent", "sibling", "index"]
             ],
             "alphabetize": { "order": "asc", "ignoreCase": true }
         }
-     ]
+     ],
+     "curly": "off"
     },
     "settings": {
       "import/resolver": {
